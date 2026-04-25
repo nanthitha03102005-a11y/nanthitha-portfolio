@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nanthitha Veeriyaperumal — Project Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b14;
+    --card: #0f1623;
+    --border: rgba(99,179,237,0.13);
+    --accent: #63b3ed;
+    --accent2: #f6ad55;
+    --accent3: #68d391;
+    --text: #e2e8f0;
+    --muted: #718096;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(99,179,237,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,179,237,0.025) 1px, transparent 1px);
+    background-size: 52px 52px;
+    pointer-events: none; z-index: 0;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  header { padding: 80px 0 56px; border-bottom: 1px solid var(--border); position: relative; }
+  header::after {
+    content: ''; position: absolute; bottom: -1px; left: 0;
+    width: 240px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(99,179,237,0.07); border: 1px solid rgba(99,179,237,0.22);
+    border-radius: 100px; padding: 5px 16px;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 22px;
+  }
+  .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); animation:blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+  h1 { font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:800; line-height:1.08; letter-spacing:-.025em; color:#fff; }
+  h1 em { font-style:normal; background:linear-gradient(135deg,var(--accent),#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .subtitle { margin-top:14px; font-size:.98rem; color:var(--muted); max-width:540px; font-weight:300; }
+  .stats { display:flex; gap:36px; margin-top:40px; flex-wrap:wrap; }
+  .stat-n { font-family:'Syne',sans-serif; font-size:2rem; font-weight:700; color:#fff; }
+  .stat-n span { color:var(--accent); }
+  .stat-l { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.09em; }
+
+  /* ── SECTION ── */
+  .sec { padding:56px 0 8px; }
+  .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:32px; }
+  .sec-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .sec-icon.php { background:rgba(139,92,246,.15); border:1px solid rgba(139,92,246,.25); }
+  .sec-icon.py  { background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.22); }
+  .sec-title { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:700; color:#fff; }
+  .sec-count { margin-left:auto; font-size:.72rem; color:var(--muted); background:rgba(255,255,255,.04); border:1px solid var(--border); padding:4px 12px; border-radius:100px; }
+
+  /* ── GRID ── */
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:18px; }
+
+  /* ── CARD ── */
+  .card {
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:26px; position:relative; overflow:hidden;
+    transition:border-color .28s, transform .28s, box-shadow .28s;
+  }
+  .card:hover {
+    border-color:rgba(99,179,237,.32);
+    transform:translateY(-4px);
+    box-shadow:0 22px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(99,179,237,.1);
+  }
+  .card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--c,var(--accent)),transparent);
+    opacity:0; transition:opacity .28s;
+  }
+  .card:hover::before { opacity:1; }
+  .card-num { position:absolute; top:18px; right:18px; font-family:'Syne',sans-serif; font-size:.68rem; font-weight:700; color:var(--muted); opacity:.45; }
+  .card-emoji { font-size:1.75rem; display:block; margin-bottom:12px; }
+  .card-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:9px; letter-spacing:-.01em; }
+  .card-desc { font-size:.85rem; color:var(--muted); line-height:1.68; font-weight:300; }
+  .feats { margin-top:12px; display:flex; flex-direction:column; gap:5px; }
+  .feat { font-size:.8rem; color:var(--muted); display:flex; align-items:flex-start; gap:7px; }
+  .feat::before { content:'→'; color:var(--accent); flex-shrink:0; font-size:.72rem; margin-top:2px; }
+  .tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:16px; }
+  .tag { font-size:.67rem; font-weight:500; padding:3px 9px; border-radius:100px; letter-spacing:.04em; text-transform:uppercase; }
+  .t-php   { background:rgba(139,92,246,.16); color:#c4b5fd; }
+  .t-py    { background:rgba(52,211,153,.13); color:#6ee7b7; }
+  .t-ai    { background:rgba(251,191,36,.13);  color:#fcd34d; }
+  .t-react { background:rgba(99,179,237,.14); color:#90cdf4; }
+  .t-mysql { background:rgba(249,115,22,.12); color:#fdba74; }
+  .t-flask { background:rgba(239,68,68,.12);  color:#fca5a5; }
+
+  /* ── FOOTER ── */
+  footer { margin-top:72px; padding:36px 0; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:.8rem; }
+  footer strong { color:var(--accent); }
+
+  @media(max-width:580px){ .grid{grid-template-columns:1fr;} .stats{gap:20px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="badge"><span class="dot"></span> AI-Powered Web Developer</div>
+  <h1>Nanthitha<br><em>Veeriyaperumal</em></h1>
+  <p class="subtitle">Full-stack developer building AI-integrated web applications across PHP, Python & React — focused on real-world impact for Indian communities.</p>
+  <div class="stats">
+    <div><div class="stat-n">17<span>+</span></div><div class="stat-l">Projects Built</div></div>
+    <div><div class="stat-n">2<span></span></div><div class="stat-l">Tech Stacks</div></div>
+    <div><div class="stat-n">AI<span></span></div><div class="stat-l">Integrated</div></div>
+    <div><div class="stat-n">🇮🇳<span></span></div><div class="stat-l">Social Impact</div></div>
+  </div>
+</header>
+
+<!-- ══════════════════ PHP PROJECTS ══════════════════ -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="sec-icon php">🐘</div>
+    <div class="sec-title">PHP Projects</div>
+    <div class="sec-count">11 Projects</div>
+  </div>
+  <div class="grid">
+
+    <!-- 1 DisasterNet -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">01</span>
+      <span class="card-emoji">🌊</span>
+      <div class="card-title">DisasterNet</div>
+      <div class="card-desc">A community disaster response platform for Coimbatore. Residents report emergencies with GPS & photos, volunteers claim tasks on a live Leaflet map, and admins oversee everything via real-time analytics — with 5-second AJAX polling and full role-based access control.</div>
+      <div class="feats">
+        <div class="feat">3 roles: Resident, Volunteer, Admin with dedicated dashboards</div>
+        <div class="feat">Live Leaflet map with custom SVG markers & claim modal</div>
+        <div class="feat">GPS capture, photo upload & AJAX live counters</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">AJAX Polling</span></div>
+    </div>
+
+    <!-- 2 RealExam Pro -->
+    <div class="card" style="--c:#a78bfa">
+      <span class="card-num">02</span>
+      <span class="card-emoji">📝</span>
+      <div class="card-title">RealExam Pro</div>
+      <div class="card-desc">A premium real-time exam & assessment platform. Teachers create exams and share a 6-digit code; students join simultaneously with a precision countdown timer that auto-submits on expiry. A live leaderboard updates every 2 seconds via AJAX long polling in a glassmorphism UI.</div>
+      <div class="feats">
+        <div class="feat">Live leaderboard via AJAX Long Polling (2-second refresh)</div>
+        <div class="feat">JavaScript precision countdown with forced auto-submit</div>
+        <div class="feat">PHP PDO secure backend preventing SQL injection</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Real-Time</span></div>
+    </div>
+
+    <!-- 3 Vallamai Panchayat -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">03</span>
+      <span class="card-emoji">🏛️</span>
+      <div class="card-title">Vallamai Panchayat Portal</div>
+      <div class="card-desc">A Tamil Nadu–inspired panchayat citizen portal with terracotta & saffron aesthetics. Citizens file complaints, track status through a visual timeline (Received → In Progress → Resolved), and view announcements. Features an animated kolam mandala background, Tiro Tamil + Playfair Display fonts, and optional Twilio SMS alerts.</div>
+      <div class="feats">
+        <div class="feat">Visual complaint status timeline with animated tracker</div>
+        <div class="feat">Animated kolam SVG mandala hero background</div>
+        <div class="feat">Bilingual (Tamil + English) UI, Twilio SMS integration</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Twilio SMS</span></div>
+    </div>
+
+    <!-- 4 Code Review Buddy -->
+    <div class="card" style="--c:#68d391">
+      <span class="card-num">04</span>
+      <span class="card-emoji">🤖</span>
+      <div class="card-title">Code Review Buddy</div>
+      <div class="card-desc">An AI-powered PHP code analyzer using Claude AI as a virtual Senior Developer & Security Auditor. Paste any PHP/HTML snippet and receive instant feedback on syntax errors, architectural flaws, SQL injection, and XSS vulnerabilities — complete with a quality score, specific fixes, and a premium dark glassmorphism interface.</div>
+      <div class="feats">
+        <div class="feat">Claude AI integration for deep architectural analysis</div>
+        <div class="feat">Security audit: SQLi & XSS detection with fix suggestions</div>
+        <div class="feat">Quality score dashboard with micro-animations</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-ai">Claude AI</span></div>
+    </div>
+
+    <!-- 5 SkillSwap -->
+    <div class="card" style="--c:#63b3ed">
+      <span class="card-num">05</span>
+      <span class="card-emoji">🔄</span>
+      <div class="card-title">SkillSwap</div>
+      <div class="card-desc">A student skill barter platform with a Smart Match Algorithm that automatically finds users who have what you want AND want what you have. Includes a full barter lifecycle (Send → Accept/Reject → Chat), dynamic skill profiles for teach/learn lists, and a premium dark glassmorphism UI with smooth animations.</div>
+      <div class="feats">
+        <div class="feat">Smart Match Algorithm for mutual skill pairing</div>
+        <div class="feat">Complete barter lifecycle with unified chat thread</div>
+        <div class="feat">Dynamic profiles: "I can TEACH" vs "I want to LEARN" lists</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span></div>
+    </div>
+
+    <!-- 6 GST Invoice Pro -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">06</span>
+      <span class="card-emoji">🧾</span>
+      <div class="card-title">GST Invoice Pro</div>
+      <div class="card-desc">A complete GST-compliant invoice generator for small businesses. Auto-calculates CGST (9%) & SGST (9%), generates professional PDF invoices via mPDF, and includes a one-click WhatsApp share button. Features a searchable invoice history with paid/unpaid filters, client management, and an animated dark glassmorphism design.</div>
+      <div class="feats">
+        <div class="feat">Live GST calculation: subtotal → CGST + SGST → total</div>
+        <div class="feat">mPDF professional invoice with business letterhead</div>
+        <div class="feat">WhatsApp share button + search/filter invoice history</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">mPDF</span></div>
+    </div>
+
+    <!-- 7 LifeCare HMS -->
+    <div class="card" style="--c:#fc8181">
+      <span class="card-num">07</span>
+      <span class="card-emoji">🏥</span>
+      <div class="card-title">LifeCare Hospital Management System</div>
+      <div class="card-desc">A full-featured role-based HMS with dedicated dashboards for Admin, Doctor, and Patient. Doctors write e-prescriptions, set weekly availability, and manage their schedule. Patients book appointments with real-time conflict detection. Includes medicine inventory with low-stock alerts, itemized billing with tax, and downloadable PDF prescriptions via TCPDF.</div>
+      <div class="feats">
+        <div class="feat">3 roles: Admin analytics, Doctor schedule, Patient booking</div>
+        <div class="feat">E-prescription engine with TCPDF download</div>
+        <div class="feat">Inventory management + smart double-booking prevention</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">TCPDF</span></div>
+    </div>
+
+    <!-- 8 Digital Forensics -->
+    <div class="card" style="--c:#fcd34d">
+      <span class="card-num">08</span>
+      <span class="card-emoji">🔍</span>
+      <div class="card-title">Digital Forensics Evidence Tracker</div>
+      <div class="card-desc">A tamper-proof digital evidence management system using SHA-256 checksums on every upload. MySQL Triggers make audit logs immutable (no UPDATE/DELETE). If a file is replaced on the server, the download is blocked and an INTEGRITY BREACH alert is logged. Features RBAC (Admin/Supervisor/Investigator), chain-of-custody timelines, and automated court-ready PDF reports.</div>
+      <div class="feats">
+        <div class="feat">SHA-256 hash recalculation on every download attempt</div>
+        <div class="feat">Immutable write-only logs via MySQL Triggers</div>
+        <div class="feat">RBAC + automated forensic PDF reports with full timeline</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Cryptographic</span></div>
+    </div>
+
+    <!-- 9 E-Commerce -->
+    <div class="card" style="--c:#63b3ed">
+      <span class="card-num">09</span>
+      <span class="card-emoji">🛒</span>
+      <div class="card-title">Quantum Commerce Platform</div>
+      <div class="card-desc">A full-featured e-commerce platform with an AI Recommendation Engine using item-based collaborative filtering and Cosine Similarity to generate "Recommended for You" suggestions. Stripe-powered checkout, automatic stock decrement post-payment, and multi-role dashboards for Customer, Seller (product CRUD + revenue), and Admin (Chart.js analytics).</div>
+      <div class="feats">
+        <div class="feat">Cosine Similarity recommendation engine, auto-updates on purchase</div>
+        <div class="feat">Stripe checkout integration + PCI-compliant order flow</div>
+        <div class="feat">Seller & Admin dashboards with Chart.js revenue analytics</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">AI Recommend</span><span class="tag t-ai">Stripe</span></div>
+    </div>
+
+    <!-- 10 Serene -->
+    <div class="card" style="--c:#a78bfa">
+      <span class="card-num">10</span>
+      <span class="card-emoji">🧠</span>
+      <div class="card-title">Serene — Student Mental Health Chatbot</div>
+      <div class="card-desc">A free, always-on mental health companion for students powered by Claude AI. Students chat with an AI called Sage about exam pressure, loneliness, or anxiety — 24/7, no app needed. When Serene detects crisis language, it automatically emails the college counselor with the student's name and message. Includes mood tracking, streaks, and conversation history.</div>
+      <div class="feats">
+        <div class="feat">Claude AI chatbot tuned for Indian student stress (NEET, JEE, hostel)</div>
+        <div class="feat">Auto-email to counselor on crisis keyword detection</div>
+        <div class="feat">Mood chart, streak tracker, full conversation history</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Claude AI</span></div>
+    </div>
+
+    <!-- 11 VakilAI -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">11</span>
+      <span class="card-emoji">⚖️</span>
+      <div class="card-title">VakilAI — Legal Rights Explainer</div>
+      <div class="card-desc">An AI-powered legal aid platform for rural Indian citizens. Users describe their problem in English, Tamil, or Hindi and receive an instant breakdown of their rights, relevant laws (IPC, CrPC, RTI), an action plan, and a ready-to-submit legal letter. Letters are downloadable as formatted PDFs via mPDF. Government-style saffron, navy & white UI.</div>
+      <div class="feats">
+        <div class="feat">Claude AI explains rights + generates ready-to-use RTI/complaint letters</div>
+        <div class="feat">Trilingual: English, Tamil, Hindi with static translation engine</div>
+        <div class="feat">mPDF legal letter download, user history dashboard</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Claude AI</span><span class="tag t-ai">mPDF</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ PYTHON PROJECTS ══════════════════ -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="sec-icon py">🐍</div>
+    <div class="sec-title">Python Projects</div>
+    <div class="sec-count">6 Projects</div>
+  </div>
+  <div class="grid">
+
+    <!-- 12 Sentinel AI -->
+    <div class="card" style="--c:#68d391">
+      <span class="card-num">12</span>
+      <span class="card-emoji">📷</span>
+      <div class="card-title">Sentinel AI Security System</div>
+      <div class="card-desc">A real-time AI security camera system powered by YOLOv8 that detects persons, knives, and guns from a live webcam feed. On detection, it simultaneously sends an email with an annotated snapshot and a Telegram photo alert. All events are logged in SQLite. Features a dark glassmorphism Flask dashboard with live MJPEG streaming and Chart.js event statistics.</div>
+      <div class="feats">
+        <div class="feat">YOLOv8n object detection: person, knife, gun (confidence > 0.6)</div>
+        <div class="feat">Multi-channel alerts: Email (SMTP) + Telegram Bot with photo</div>
+        <div class="feat">Flask live MJPEG stream + SQLite event history + Chart.js stats</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-flask">Flask</span><span class="tag t-ai">YOLOv8</span></div>
+    </div>
+
+    <!-- 13 Deepfake Detection -->
+    <div class="card" style="--c:#fc8181">
+      <span class="card-num">13</span>
+      <span class="card-emoji">🎭</span>
+      <div class="card-title">Deepfake Detection System</div>
+      <div class="card-desc">A web-based deepfake detector using a fine-tuned EfficientNet-B0 model trained on FaceForensics++. Supports both image and video uploads. For each input, it generates a confidence score and a Grad-CAM heatmap visualizing which facial regions the model flagged. Video analysis shows a per-frame score timeline. All scans are stored in SQLite history.</div>
+      <div class="feats">
+        <div class="feat">EfficientNet-B0 fine-tuned on FaceForensics++ dataset</div>
+        <div class="feat">Grad-CAM heatmap overlay for explainable AI predictions</div>
+        <div class="feat">Video frame extraction + per-frame score timeline via Chart.js</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-flask">Flask</span><span class="tag t-ai">EfficientNet</span><span class="tag t-ai">Grad-CAM</span></div>
+    </div>
+
+    <!-- 14 NeuroScan AI -->
+    <div class="card" style="--c:#63b3ed">
+      <span class="card-num">14</span>
+      <span class="card-emoji">🩺</span>
+      <div class="card-title">NeuroScan AI — X-Ray Diagnosis Aid</div>
+      <div class="card-desc">A professional-grade medical imaging tool using EfficientNet-B3 to classify chest X-rays into Normal, Pneumonia, COVID-19, Tuberculosis, and Pleural Effusion. Supports full DICOM (.dcm) files with automatic CLAHE image enhancement. Generates Grad-CAM heatmaps and downloadable PDF reports with patient metadata. Mandatory disclaimer on every page.</div>
+      <div class="feats">
+        <div class="feat">EfficientNet-B3 (timm) classifying 5 conditions from X-rays</div>
+        <div class="feat">DICOM support (pydicom) + CLAHE adaptive image enhancement</div>
+        <div class="feat">Grad-CAM heatmaps + automated PDF report via ReportLab</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-flask">Flask</span><span class="tag t-ai">EfficientNet-B3</span><span class="tag t-ai">DICOM</span></div>
+    </div>
+
+    <!-- 15 Smart Farmer DSS -->
+    <div class="card" style="--c:#68d391">
+      <span class="card-num">15</span>
+      <span class="card-emoji">🌾</span>
+      <div class="card-title">Smart Farmer Decision Support System</div>
+      <div class="card-desc">A multi-stack platform (React + PHP + Python + MySQL) for farmers to receive AI-driven crop disease risk scores and weather forecasts. A Random Forest ML model predicts disease probability from field observations and live OpenWeatherMap data. Personalized SMS alerts via Twilio. Fully bilingual Tamil/English UI built with React, Framer Motion, and Tailwind CSS.</div>
+      <div class="feats">
+        <div class="feat">Random Forest ML engine for crop disease risk scoring</div>
+        <div class="feat">FastAPI Python backend + PHP REST API + React frontend</div>
+        <div class="feat">Tamil/English bilingual UI with Framer Motion animations</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-react">React</span><span class="tag t-php">PHP</span><span class="tag t-ai">ML</span><span class="tag t-ai">Twilio</span></div>
+    </div>
+
+    <!-- 16 PoshanTrack -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">16</span>
+      <span class="card-emoji">👶</span>
+      <div class="card-title">PoshanTrack — Child Malnutrition Tracker</div>
+      <div class="card-desc">A digital tool for Anganwadi workers to enter child weight & height, with a Python FastAPI engine that instantly calculates the WHO Z-score standard. If the Z-score drops below the warning threshold, the system sends an SMS to both the mother and supervisor — 3 weeks before malnutrition becomes severe. PHP fallback Z-score calculator works without Python.</div>
+      <div class="feats">
+        <div class="feat">WHO Z-score calculation engine via Python FastAPI</div>
+        <div class="feat">Instant SMS alerts to mother + supervisor on threshold breach</div>
+        <div class="feat">PHP fallback Z-score calculator if Python is unavailable</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">WHO Standard</span></div>
+    </div>
+
+    <!-- 17 JanAudit -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">17</span>
+      <span class="card-emoji">📸</span>
+      <div class="card-title">JanAudit — AI Civic Complaint Platform</div>
+      <div class="card-desc">Citizens upload photos of broken roads, drains, or streetlights. YOLOv8 verifies the image shows a real infrastructure problem before accepting the complaint. Ward officers receive auto-emails with a 7-day SLA. Missed deadlines trigger automatic escalation to the City Commissioner. All open complaints appear on a public Leaflet map for social accountability.</div>
+      <div class="feats">
+        <div class="feat">YOLOv8 AI photo verification — no fake complaints accepted</div>
+        <div class="feat">Hard 7-day SLA with auto-email escalation to Commissioner</div>
+        <div class="feat">Public live Leaflet map of all unresolved complaints</div>
+      </div>
+      <div class="tags"><span class="tag t-py">Python</span><span class="tag t-php">PHP</span><span class="tag t-ai">YOLOv8</span><span class="tag t-mysql">MySQL</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ SOCIAL IMPACT ══════════════════ -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="sec-icon php" style="background:rgba(246,173,85,.12);border-color:rgba(246,173,85,.25);">🌍</div>
+    <div class="sec-title">Civic & Social Impact Projects</div>
+    <div class="sec-count">Bonus</div>
+  </div>
+  <div class="grid">
+
+    <!-- GramShakti -->
+    <div class="card" style="--c:#f6ad55">
+      <span class="card-num">★</span>
+      <span class="card-emoji">🏘️</span>
+      <div class="card-title">GramShakti</div>
+      <div class="card-desc">A village-level complaint management portal where residents file complaints about roads, water supply, or electricity in Tamil or English from any phone browser. Each complaint gets a ticket number; the panchayat admin updates status and the villager receives an automatic SMS — bridging the gap between rural citizens and local government without requiring any app download.</div>
+      <div class="feats">
+        <div class="feat">Tamil + English complaint filing with ticket tracking</div>
+        <div class="feat">Admin dashboard for status updates + auto-SMS to citizen</div>
+        <div class="feat">Zero cloud cost — runs on a single local server</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Twilio SMS</span></div>
+    </div>
+
+    <!-- UdharBook -->
+    <div class="card" style="--c:#68d391">
+      <span class="card-num">★</span>
+      <span class="card-emoji">📒</span>
+      <div class="card-title">UdharBook — SMS Ledger for Vendors</div>
+      <div class="card-desc">A digital credit ledger for kirana stores and street vendors that works entirely via SMS — no smartphone, no internet, no app needed. Vendors text "Ramu 200" to add a debt, "Ramu paid 200" to record payment, or "balance Ramu" to check outstanding. The system auto-sends SMS reminders to customers and generates monthly PDF statements for bank loan applications.</div>
+      <div class="feats">
+        <div class="feat">SMS-first: works on a ₹500 keypad phone with basic SIM</div>
+        <div class="feat">Twilio webhook auto-parses incoming texts into ledger entries</div>
+        <div class="feat">Monthly PDF statements for MUDRA loan eligibility</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Twilio SMS</span></div>
+    </div>
+
+    <!-- SkillBridge -->
+    <div class="card" style="--c:#a78bfa">
+      <span class="card-num">★</span>
+      <span class="card-emoji">🎓</span>
+      <div class="card-title">SkillBridge — Vocational Micro-Certification</div>
+      <div class="card-desc">A vernacular micro-certification platform for blue-collar workers (electricians, plumbers) in Tamil Nadu. Students watch 5-7 min YouTube micro-modules, pass a 70%-threshold MCQ quiz, pay ₹199 via Razorpay, and download a branded PDF certificate with a QR code for public employer verification. An employer portal lets companies search certified candidates directly.</div>
+      <div class="feats">
+        <div class="feat">Tamil/English bilingual engine + sequential module unlocking</div>
+        <div class="feat">Razorpay ₹199 payment + mPDF certificate with QR verification</div>
+        <div class="feat">Employer portal for job posting & certified candidate search</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Razorpay</span><span class="tag t-ai">mPDF</span></div>
+    </div>
+
+    <!-- ParentConnect -->
+    <div class="card" style="--c:#63b3ed">
+      <span class="card-num">★</span>
+      <span class="card-emoji">📣</span>
+      <div class="card-title">ParentConnect — School-Parent Messaging</div>
+      <div class="card-desc">A multilingual communication platform for government schools. Teachers broadcast announcements in English and the system auto-translates them to Tamil, Hindi, or Telugu based on each parent's preference, then sends via WhatsApp (Twilio) with automatic SMS fallback if WhatsApp fails. Principals get school-wide engagement analytics on a Chart.js dashboard. Bulk parent import via CSV.</div>
+      <div class="feats">
+        <div class="feat">Auto-translation to Tamil/Hindi/Telugu per parent preference</div>
+        <div class="feat">WhatsApp-first messaging with SMS fallback via Twilio</div>
+        <div class="feat">Principal analytics dashboard + bulk CSV parent import</div>
+      </div>
+      <div class="tags"><span class="tag t-php">PHP</span><span class="tag t-mysql">MySQL</span><span class="tag t-ai">Twilio</span><span class="tag t-ai">Translate</span></div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    Portfolio of <strong>Nanthitha Veeriyaperumal</strong> — AI-Powered Web Developer &nbsp;·&nbsp; Coimbatore, Tamil Nadu 🇮🇳
+  </div>
+</footer>
+
+</body>
+</html>
